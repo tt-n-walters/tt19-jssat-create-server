@@ -12,16 +12,21 @@ readlineOptions.question("Choose server name: ", function(serverName) {
 
     readlineOptions.question("Choose a server port: ", function(serverPort) {
         console.log("Server port: " + serverPort)
-        readlineOptions.close()
+
+        createServerFolder(serverName, callback)
+
+        function callback() {
+            readlineOptions.close()
+        }
     })
 })
 
-readlineOptions.on("close", function() {
+readlineOptions.on("close", function(params) {
     process.exit(0)
 })
 
 
-function createServerFolder(serverName) {
+function createServerFolder(serverName, callback) {
     fs.mkdir(serverName, function(error) {
         if (error) {
             console.log("Failed to create folder.")
@@ -31,6 +36,7 @@ function createServerFolder(serverName) {
                 if (error) {
                     console.log("Failed to create index.js")
                 }
+                callback()
             })
         }
     })
