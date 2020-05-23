@@ -14,8 +14,20 @@ readlineOptions.question("Choose server name: ", function(serverName) {
     })
 })
 
-
-
 readlineOptions.on("close", function() {
     process.exit(0)
 })
+
+
+function createServerFolder(serverName) {
+
+}
+
+function createProxy(serverName, serverPort) {
+
+}
+
+function updateConfig(serverName) {
+    
+}
+
