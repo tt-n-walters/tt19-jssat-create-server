@@ -17,6 +17,7 @@ readlineOptions.question("Choose server name: ", function(serverName) {
 
         // Run our main functions
         createServerFolder(serverName, callback)
+        createProxy(serverName, serverPort, callback)
         
         // Create a callback that will end the program
         function callback() {
@@ -44,13 +45,13 @@ function createServerFolder(serverName, callback) {
                 if (error) {
                     console.log("Failed to create index.js")
                 }
-                callback()
+                
             })
         }
     })
 }
 
-function createProxy(serverName, serverPort) {
+function createProxy(serverName, serverPort, callback) {
     // Define proxy file and folder locations
     let folderLocation = "../public_html/" + serverName
     let fileLocation = folderLocation + "/.htaccess"
@@ -72,6 +73,7 @@ function createProxy(serverName, serverPort) {
                 if (error) {
                     console.log("Failed to create htaccess proxy.")
                 }
+                callback()
             })
         }
     })
