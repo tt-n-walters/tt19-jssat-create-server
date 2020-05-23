@@ -55,6 +55,13 @@ function createProxy(serverName, serverPort) {
     let folderLocation = "../public_html/" + serverName
     let fileLocation = folderLocation + "/.htaccess"
 
+    // Create proxy code with the correct port number
+    let htaccess = `<IfModule mod_rewrite.c>
+        RewriteEngine On
+        RewriteCond %{SERVER_PORT} !^${serverPort}$
+        RewriteRule ^(.*) http://%{SERVER_NAME}:${serverPort}/$1 [P]
+    </IfModule>`
+
     // Create proxy folder in public_html
     fs.mkdir(folderLocation, function(error) {
         if (error) {
