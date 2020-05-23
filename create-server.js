@@ -22,7 +22,18 @@ readlineOptions.on("close", function() {
 
 
 function createServerFolder(serverName) {
+    fs.mkdir(serverName, function(error) {
+        if (error) {
+            console.log("Failed to create folder.")
+        } else {
 
+            fs.writeFile(serverName + "/index.js", "", function(error) {
+                if (error) {
+                    console.log("Failed to create index.js")
+                }
+            })
+        }
+    })
 }
 
 function createProxy(serverName, serverPort) {
