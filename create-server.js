@@ -7,8 +7,14 @@ const readlineOptions = readline.createInterface({
 
 readlineOptions.question("Choose server name: ", function(serverName) {
     console.log("You entered: " + serverName)
-    readlineOptions.close()
+
+    readlineOptions.question("Choose a server port: ", function(serverPort) {
+        console.log("Server port: " + serverPort)
+        readlineOptions.close()
+    })
 })
+
+
 
 readlineOptions.on("close", function() {
     process.exit(0)
