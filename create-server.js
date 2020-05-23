@@ -51,7 +51,9 @@ function createServerFolder(serverName, callback) {
 }
 
 function createProxy(serverName, serverPort) {
-
+    let folderLocation = "../public_html/" + serverName
+    let fileLocation = folderLocation + "/.htaccess"
+    
 }
 
 function updateConfig(serverName) {
