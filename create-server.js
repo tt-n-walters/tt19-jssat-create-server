@@ -1,4 +1,6 @@
 const readline = require("readline")
+const fs = require("fs")
+
 
 const readlineOptions = readline.createInterface({
     input: process.stdin,
@@ -28,6 +30,6 @@ function createProxy(serverName, serverPort) {
 }
 
 function updateConfig(serverName) {
-    
+
 }
 
