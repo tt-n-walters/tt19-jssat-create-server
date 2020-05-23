@@ -51,9 +51,23 @@ function createServerFolder(serverName, callback) {
 }
 
 function createProxy(serverName, serverPort) {
+    // Define proxy file and folder locations
     let folderLocation = "../public_html/" + serverName
     let fileLocation = folderLocation + "/.htaccess"
-    
+
+    // Create proxy folder in public_html
+    fs.mkdir(folderLocation, function(error) {
+        if (error) {
+            console.log("Failed to create proxy folder.")
+        } else {
+            // Folder created successfully
+            fs.writeFile(fileLocation, htaccess, function(error) {
+                if (error) {
+                    console.log("Failed to create htaccess proxy.")
+                }
+            })
+        }
+    })
 }
 
 function updateConfig(serverName) {
