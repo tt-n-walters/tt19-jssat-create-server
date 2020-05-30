@@ -91,7 +91,12 @@ function updateConfig(serverName) {
     }
 
     // Add the new server configuration
-    
+    let newServer = {
+        name: serverName,
+        script: serverName + "/index.js",
+        watch: serverName + "/index.js"
+    }
+    apps.push(newServer)
 
     // Write the configuration to the ecosystem file
 
