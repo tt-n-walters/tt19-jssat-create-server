@@ -16,7 +16,7 @@ readlineOptions.question("Choose server name: ", function(serverName) {
         console.log("Server port: " + serverPort)
 
         // Run our main functions
-        createServerFolder(serverName, callback)
+        createServerFolder(serverName, serverPort, callback)
         createProxy(serverName, serverPort, callback)
         
         // Create a callback that will end the program
@@ -32,7 +32,15 @@ readlineOptions.on("close", function(params) {
 })
 
 
-function createServerFolder(serverName, callback) {
+function createServerFolder(serverName, serverPort, callback) {
+    code = `const express = require("express")
+    const app = express()
+    app.get("/index.html", function(req, res) {
+        res.send("Welcome!")
+    })
+    app.listen(${serverPort})
+    `
+
     // Create the folder
     fs.mkdir(serverName, function(error) {
         // Check for any errors
@@ -41,7 +49,7 @@ function createServerFolder(serverName, callback) {
         } else {
 
             // Create the javascript file
-            fs.writeFile(serverName + "/index.js", "", function(error) {
+            fs.writeFile(serverName + "/index.js", code, function(error) {
                 if (error) {
                     console.log("Failed to create index.js")
                 }
