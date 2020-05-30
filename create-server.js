@@ -19,6 +19,7 @@ readlineOptions.question("Choose server name: ", function(serverName) {
         // Run our main functions
         createServerFolder(serverName, callback)
         createProxy(serverName, serverPort, callback)
+        updateConfig(serverName)
         
         // Create a callback that will end the program
         function callback() {
@@ -97,6 +98,8 @@ function updateConfig(serverName) {
         watch: serverName + "/index.js"
     }
     apps.push(newServer)
+
+    console.log(ecosystem)
 
     // Write the configuration to the ecosystem file
 
