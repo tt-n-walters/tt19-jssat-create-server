@@ -105,9 +105,9 @@ function updateConfig(serverName) {
     ecosystemString += "    apps: [\n";
     for (let app of apps) {
         ecosystemString += "        {\n"
-        ecosystemString += "            name: '" + app.name + ',\n'
-        ecosystemString += "            script: '" + app.script + ',\n'
-        ecosystemString += "            watch: '" + app.watch + '\n'
+        ecosystemString += "            name: '" + app.name + "',\n"
+        ecosystemString += "            script: '" + app.script + "',\n"
+        ecosystemString += "            watch: '" + app.watch + "'\n"
         ecosystemString += "        },\n"
     }
     ecosystemString += "    ]\n"
