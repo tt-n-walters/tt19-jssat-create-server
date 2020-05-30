@@ -81,6 +81,19 @@ function createProxy(serverName, serverPort, callback) {
 }
 
 function updateConfig(serverName) {
+    // Check the current servers for conflicts
+    let apps = ecosystem.apps
+    for (let app of apps) {
+        if (app.name == serverName) {
+            console.log("A server with that name already exists!")
+            process.exit()
+        }
+    }
+
+    // Add the new server configuration
+    
+
+    // Write the configuration to the ecosystem file
 
 }
 
