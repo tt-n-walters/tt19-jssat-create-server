@@ -1,5 +1,6 @@
 const readline = require("readline")
 const fs = require("fs")
+const ecosystem = require("./ecosystem.config.js")
 
 
 // Setup the readline module so it knows where to read and write to
