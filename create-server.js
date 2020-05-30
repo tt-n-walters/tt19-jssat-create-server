@@ -108,7 +108,7 @@ function updateConfig(serverName) {
         ecosystemString += "            name: '" + app.name + ',\n'
         ecosystemString += "            script: '" + app.script + ',\n'
         ecosystemString += "            watch: '" + app.watch + '\n'
-        ecosystemString += "        }\n"
+        ecosystemString += "        },\n"
     }
     ecosystemString += "    ]\n"
     ecosystemString += "}\n"
