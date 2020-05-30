@@ -112,5 +112,11 @@ function updateConfig(serverName) {
     }
     ecosystemString += "    ]\n"
     ecosystemString += "}\n"
+
+    fs.writeFile("ecosystem.config.js", ecosystemString, function(error) {
+        if (error) {
+            console.log("Something terrible went wrong!")
+        }
+    })
 }
 
