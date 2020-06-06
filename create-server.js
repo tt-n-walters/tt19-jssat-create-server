@@ -22,7 +22,7 @@ readlineOptions.question("Choose server name: ", function(serverName) {
         let configPromise = updateConfig(serverName)
         let promises = [folderPromise, proxyPromise, configPromise]
 
-        
+        // Once all promises are done, run the final function
         Promise.all(promises).then(readlineOptions.close)
     })
 })
@@ -33,22 +33,13 @@ readlineOptions.on("close", function(params) {
 })
 
 
-function createServerFolder(serverName, callback) {
+function createServerFolder(serverName) {
     // Create the folder
-    fs.mkdir(serverName, function(error) {
-        // Check for any errors
-        if (error) {
-            console.log("Failed to create folder.")
-        } else {
+    let folderPromise = fs.mkdir(serverName)
 
-            // Create the javascript file
-            fs.writeFile(serverName + "/index.js", "", function(error) {
-                if (error) {
-                    console.log("Failed to create index.js")
-                }
-                
-            })
-        }
+    folderPromise.then(() => {
+        let filePromise = fs.writeFile(serverName + "/index.js", "")
+        return filePromise
     })
 }
 
