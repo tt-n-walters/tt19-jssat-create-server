@@ -61,7 +61,6 @@ function createProxy(serverName, serverPort, callback) {
         let filePromise = fs.writeFile(fileLocation, htaccess)
         return filePromise
     })
-    
 }
 
 function updateConfig(serverName) {
@@ -96,10 +95,7 @@ function updateConfig(serverName) {
     ecosystemString += "    ]\n"
     ecosystemString += "}\n"
 
-    fs.writeFile("ecosystem.config.js", ecosystemString, function(error) {
-        if (error) {
-            console.log("Something terrible went wrong!")
-        }
-    })
+    let filePromise = fs.writeFile("ecosystem.config.js", ecosystemString)
+    return filePromise
 }
 
