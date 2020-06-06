@@ -1,5 +1,5 @@
 const readline = require("readline")
-const fs = require("fs")
+const fs = require("fs").promises
 const ecosystem = require("./ecosystem.config.js")
 
 
@@ -17,14 +17,13 @@ readlineOptions.question("Choose server name: ", function(serverName) {
         console.log("Server port: " + serverPort)
 
         // Run our main functions
-        createServerFolder(serverName, callback)
-        createProxy(serverName, serverPort, callback)
-        updateConfig(serverName)
+        let folderPromise = createServerFolder(serverName)
+        let proxyPromise = createProxy(serverName, serverPort)
+        let configPromise = updateConfig(serverName)
+        let promises = [folderPromise, proxyPromise, configPromise]
+
         
-        // Create a callback that will end the program
-        function callback() {
-            readlineOptions.close()
-        }
+        Promise.all(promises).then(readlineOptions.close)
     })
 })
 
