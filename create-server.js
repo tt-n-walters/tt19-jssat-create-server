@@ -23,7 +23,7 @@ readlineOptions.question("Choose server name: ", function(serverName) {
         let promises = [folderPromise, proxyPromise, configPromise]
 
         // Once all promises are done, run the final function
-        Promise.all(promises).then(readlineOptions.close)
+        Promise.all(promises).then(process.exit)
     })
 })
 
